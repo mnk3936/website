@@ -734,7 +734,15 @@
         sectionObserver.observe(section);
     });
 
-
+if (window.innerWidth > 768) {
+    // Project Slider
+    let currentSlide = 0;
+    const container = document.getElementById('projectsContainer');
+    const cards = document.querySelectorAll('.project-card');
+    const totalSlides = cards.length;
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const dotsContainer = document.getElementById('navDots');
 
     // Create navigation dots
     for (let i = 0; i < totalSlides; i++) {
@@ -799,7 +807,7 @@
     }
 
     window.addEventListener('resize', updateSlider);
-
+}
 
     /* 🌈 Smooth Background Color Transition */
     const bgColors = ["#10100e", "#004aad", "#10100e", "#004aad"];
