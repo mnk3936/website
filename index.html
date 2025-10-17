@@ -21,6 +21,18 @@
             font-weight: normal;
             font-style: normal;
         }
+        @font-face {
+            font-family: 'bernoru';
+            src: url('fonts/bernoru-blackultraexpanded.otf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'grotesk';
+            src: url('fonts/kobuzan-cy-grotesk-grand-dark.otf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
         body {
             font-family: 'Inter', Arial, sans-serif;
             background-color: #10100e;
@@ -32,8 +44,8 @@
         /* Navigation */
         nav {
             position: fixed;
-            top: 35px;
-            left: 35px;
+            top: 25px;
+            right: 25px;
             z-index: 1000;
         }
 
@@ -91,7 +103,55 @@
             line-height: 1.3;
             color: #fff;
         }
+        
+        .menu-icon {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 22px;
+            cursor: pointer;
+            z-index: 1001;
+        }
 
+        .menu-icon span {
+            height: 3px;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 3px;
+            transition: all 0.4s ease;
+        }
+
+        .menu-icon.open span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        .menu-icon.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-icon.open span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        .nav-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+        }
+        .nav-list li a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-list li a:hover {
+            color: #a8d5ba;
+        }
         /* Sections */
         section {
             min-height: 100vh;
@@ -302,26 +362,34 @@
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            nav {
-                top: 20px;
-                left: 20px;
+        @media (max-width: 1024px) {
+            .hero-content {/* stack text and AI vertically */
+                gap: 10px;
             }
 
-            .logo {
-                top: 20px;
-                right: 20px;
+            .hero-subtext {
+                font-size: clamp(24px, 4vw, 36px);
+                text-align: left;
+                line-height: 1;
             }
 
-            section {
-                padding: 0 30px;
+            .ai-text {
+                font-size: clamp(120px, 35vw, 300px);
             }
 
-            .asterisk-icon {
-                width: 80px;
-                height: 80px;
-                left: 30px;
-                bottom: 50px;
+            .vision h2 {
+                font-size: clamp(22px, 4vw, 40px);
+                margin-bottom: 40px;
+                padding: 0 20px;
+            }
+
+            .projects {
+                padding: 80px 20px;
+            }
+
+            .project-card {
+                min-width: 90%;
+                aspect-ratio: 16/10;
             }
 
             .arrow-left {
@@ -334,12 +402,211 @@
 
             .arrow-left,
             .arrow-right {
-                width: 40px;
-                height: 40px;
+                width: 45px;
+                height: 45px;
                 opacity: 0.7;
+            }
+
+            .contact h2 {
+                font-size: clamp(32px, 5vw, 60px);
             }
         }
 
+        /* Mobile screens (below 768px) */
+        @media (max-width: 768px) {
+            #canvas {
+                display: none; /* hide canvas on mobile */
+            }
+            body {
+                overflow-x: hidden;
+            }
+
+            nav {
+                top: 37px;
+                left: 25px;
+            }
+
+            nav ul li a {
+                font-size: 13px;
+                letter-spacing: 0.3px;
+            }
+
+            .logo {
+                top: 25px;
+                right: 28px;
+            }
+
+            .logo img {
+                width: 80px;  /* decrease for smaller logo */
+                height: auto; /* keeps proportions */
+            }
+
+            .logo-text {
+                font-family: 'bernoru', sans-serif;
+                font-size: 16px;
+            }
+
+            .nav-list {
+                position: absolute;
+                top: 50px;
+                left: 0;
+                background: transparent; /* full transparency */
+                flex-direction: column;
+                align-items: left;
+                line-height: 0.6;
+                gap: 15px;
+                padding: 10px 0;
+                opacity: 0;
+                pointer-events: none;
+                transform: translateY(-10px);
+                transition: all 0.35s ease;
+            }
+
+            .nav-list.active {
+                opacity: 1;
+                pointer-events: all;
+                transform: translateY(0);
+            }
+
+
+            nav ul.active {
+                left: 0;
+            }
+
+
+            section {
+                padding: 0 10px;
+            }
+
+            .hero {
+                height: 100vh;
+                width: 100%;
+                position: relative;
+                padding: 0px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .hero-content {
+                height: 100vh;
+                width: 100%;
+                position: relative;
+            }
+
+            .hero-subtext {
+                position: absolute; /* Make it independent */
+                top: 40%; /* Center vertically */
+                left: 4px; /* Left aligned with padding */
+                transform: translateY(-50%); /* Perfect centering */
+                width: auto;
+                text-align: left;
+                font-size: 15vw !important;
+                line-height: 1 !important;
+                z-index: 2; /* On top */
+            }
+            .ai-text {
+                font-family: 'grotesk', sans-serif;
+                position: absolute; /* Make it independent */
+                top: 24%; /* Position from bottom */
+                right: 0px; /* Right aligned with padding */
+                text-align: right;
+                font-size: 75vw !important;
+                line-height: 0.85 !important;
+                z-index: 1; /* Behind subtext */
+            }
+    .projects {
+        padding: 60px 10px;
+        min-height: 80vh; /* Give space for stacked cards */
+    }
+
+    .projects-wrapper {
+        position: relative;
+        height: 500px; /* Fixed height for stack */
+        overflow: visible; /* Let cards overflow */
+    }
+
+    .projects-container {
+        display: block; /* Remove flex */
+        position: relative;
+        height: 100%;
+    }
+
+    .project-card {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 85%;
+        min-width: auto;
+        aspect-ratio: 4/3;
+        border-radius: 20px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: grab;
+    }
+
+    /* Stack effect - cards behind get smaller and lower */
+    .project-card:nth-child(1) {
+        z-index: 3;
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+
+    .project-card:nth-child(2) {
+        z-index: 2;
+        transform: translate(-50%, -50%) scale(0.95) translateY(20px);
+        opacity: 0.7;
+    }
+
+    .project-card:nth-child(3) {
+        z-index: 1;
+        transform: translate(-50%, -50%) scale(0.9) translateY(40px);
+        opacity: 0.4;
+    }
+
+    /* When swiping */
+    .project-card.swiping {
+        transition: none;
+        cursor: grabbing;
+    }
+
+    /* When swiped away */
+    .project-card.swiped-left {
+        transform: translate(-200%, -50%) rotate(-30deg) !important;
+        opacity: 0 !important;
+    }
+
+    .project-card.swiped-right {
+        transform: translate(100%, -50%) rotate(30deg) !important;
+        opacity: 0 !important;
+    }
+
+    .project-card img.project-img {
+        border-radius: 20px;
+        pointer-events: none; /* Prevent image drag */
+    }
+
+    /* Hide arrows and dots - not needed for swipe */
+    .arrow-left,
+    .arrow-right,
+    .nav-dots {
+        display: none;
+    }
+            .vision h2 {
+                font-size: clamp(20px, 5vw, 32px);
+                margin-bottom: 30px;
+            }
+
+            .contact h2 {
+                font-size: clamp(28px, 6vw, 50px);
+            }
+
+            .contact a {
+                font-size: 14px;
+            }
+        }
+
+ 
         /* Scroll Animations */
         section {
             opacity: 0;
@@ -362,11 +629,17 @@
 <body>
     <!-- Navigation -->
     <nav>
-        <ul>
+        <ul id="navList" class="nav-list">
             <li><a href="#hero" class="nav-link">home</a></li>
             <li><a href="#projects" class="nav-link">projects</a></li>
             <li><a href="#contact" class="nav-link">contact</a></li>
         </ul>
+
+        <div class="menu-icon" id="menuIcon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </nav>
 
     <!-- Logo -->
@@ -384,12 +657,10 @@
     <!-- Hero Section -->
     <section class="hero" id="hero">
         <div class="hero-content">
-            <div class="hero-content">
-                <div class="hero-subtext">make<br>the<br>best<br>out of</div>
-                <canvas id="canvas"></canvas>
+            <div class="hero-subtext">make<br>the<br>best<br>out of</div>
+            <canvas id="canvas"></canvas>
 
-                <div class="ai-text">AI</div>
-            </div>
+            <div class="ai-text"><br>AI</div>
         </div>
     </section>
 
@@ -468,6 +739,14 @@
             });
         });
     });
+    // nav hamburger menu in mobile//
+    const menuIcon = document.getElementById('menuIcon');
+    const navMenu = document.querySelector('nav ul');
+
+    menuIcon.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        menuIcon.classList.toggle('open');
+    })
 
     // Smooth Scroll Animation Observer
     const sections = document.querySelectorAll('section');
@@ -488,6 +767,122 @@
     sections.forEach(section => {
         sectionObserver.observe(section);
     });
+
+
+    //tinder swipe//
+    if (window.innerWidth <= 768) {
+    const cards = document.querySelectorAll('.project-card');
+    let currentCard = 0;
+    
+    cards.forEach((card, index) => {
+        let startX = 0;
+        let currentX = 0;
+        let isDragging = false;
+
+        // Touch events
+        card.addEventListener('touchstart', (e) => {
+            if (index !== currentCard) return;
+            isDragging = true;
+            startX = e.touches[0].clientX;
+            card.classList.add('swiping');
+        });
+
+        card.addEventListener('touchmove', (e) => {
+            if (!isDragging || index !== currentCard) return;
+            currentX = e.touches[0].clientX;
+            const diff = currentX - startX;
+            const rotate = diff / 20;
+            
+            card.style.transform = `translate(calc(-50% + ${diff}px), -50%) rotate(${rotate}deg)`;
+        });
+
+        card.addEventListener('touchend', () => {
+            if (!isDragging || index !== currentCard) return;
+            isDragging = false;
+            card.classList.remove('swiping');
+            
+            const diff = currentX - startX;
+            
+            // Swipe threshold
+            if (Math.abs(diff) > 100) {
+                // Swiped away
+                if (diff > 0) {
+                    card.classList.add('swiped-right');
+                } else {
+                    card.classList.add('swiped-left');
+                }
+                
+                // Move to next card
+                setTimeout(() => {
+                    card.style.display = 'none';
+                    currentCard++;
+                    
+                    // Reset if all cards swiped
+                    if (currentCard >= cards.length) {
+                        cards.forEach(c => {
+                            c.style.display = 'flex';
+                            c.classList.remove('swiped-left', 'swiped-right');
+                            c.style.transform = '';
+                        });
+                        currentCard = 0;
+                    }
+                }, 400);
+            } else {
+                // Snap back
+                card.style.transform = '';
+            }
+        });
+
+        // Mouse events (for testing in browser)
+        card.addEventListener('mousedown', (e) => {
+            if (index !== currentCard) return;
+            isDragging = true;
+            startX = e.clientX;
+            card.classList.add('swiping');
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging || index !== currentCard) return;
+            currentX = e.clientX;
+            const diff = currentX - startX;
+            const rotate = diff / 20;
+            
+            card.style.transform = `translate(calc(-50% + ${diff}px), -50%) rotate(${rotate}deg)`;
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (!isDragging || index !== currentCard) return;
+            isDragging = false;
+            card.classList.remove('swiping');
+            
+            const diff = currentX - startX;
+            
+            if (Math.abs(diff) > 100) {
+                if (diff > 0) {
+                    card.classList.add('swiped-right');
+                } else {
+                    card.classList.add('swiped-left');
+                }
+                
+                setTimeout(() => {
+                    card.style.display = 'none';
+                    currentCard++;
+                    
+                    if (currentCard >= cards.length) {
+                        cards.forEach(c => {
+                            c.style.display = 'flex';
+                            c.classList.remove('swiped-left', 'swiped-right');
+                            c.style.transform = '';
+                        });
+                        currentCard = 0;
+                    }
+                }, 400);
+            } else {
+                card.style.transform = '';
+            }
+        });
+    });
+}
 
     // Project Slider
     let currentSlide = 0;
