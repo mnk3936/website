@@ -320,7 +320,50 @@
         .arrow-icon {
             fill: #666;
         }
+        
+        footer {
+            background-color: transparent;
+            width: 100%;
+            padding: 10px;
+            position: absolute;
+            min-height: 10px;
+        }
 
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            flex-direction: column;        /* ADD THIS - stacks items vertically */
+            align-items: center;           /* Centers everything horizontally */
+            gap: 0px;                     /* Space between text and logo */
+        }
+
+        /* Footer Content (Now on TOP) */
+        .footer-content {
+            order: 2;                      /* Appears first */
+            text-align: center;
+        }
+
+        /* Footer Logo (Now on BOTTOM) */
+        .footer-logo {
+            order: 1;                      /* Appears second (below text) */
+        }
+
+        .footer-logo img {
+            width: 100%;
+            max-width: 35px;               /* Increased for visibility */
+            height: auto;
+            display: block;
+            margin: 0 auto;                /* Centers the logo */
+        }
+
+        .footer-content p {
+            margin: 4px 0;
+            font-size: 10px;
+            font-weight: 300;
+            color: #ffffff;
+        }
         /* Responsive */
         @media (max-width: 1024px) {
             .hero-content {/* stack text and AI vertically */
@@ -660,6 +703,19 @@
             <a href="mailto:nadeemkariyad1@gmail.com">nadeemkariyad1@gmail.com</a>
         </div>
     </section>
+    <footer>
+        <div class="footer-container">
+            <!-- Logo Section (Left) -->
+            <div class="footer-logo">
+                <img src="images/logo2.png" alt="Logo">
+            </div>
+            
+            <!-- Text Content (Right) -->
+            <div class="footer-content">
+                <p>&copy; 2025 Muhammed Nadeem. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
 <script>
     // Smooth Scroll with Animation for Navigation
