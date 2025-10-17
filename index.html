@@ -44,8 +44,8 @@
         /* Navigation */
         nav {
             position: fixed;
-            top: 25px;
-            right: 25px;
+            top: 35px;
+            left: 35px;
             z-index: 1000;
         }
 
@@ -103,55 +103,11 @@
             line-height: 1.3;
             color: #fff;
         }
-        
+
         .menu-icon {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 22px;
-            cursor: pointer;
-            z-index: 1001;
+            display: none;
         }
 
-        .menu-icon span {
-            height: 3px;
-            width: 100%;
-            background-color: #fff;
-            border-radius: 3px;
-            transition: all 0.4s ease;
-        }
-
-        .menu-icon.open span:nth-child(1) {
-            transform: translateY(9px) rotate(45deg);
-        }
-        .menu-icon.open span:nth-child(2) {
-            opacity: 0;
-        }
-        .menu-icon.open span:nth-child(3) {
-            transform: translateY(-9px) rotate(-45deg);
-        }
-
-        .nav-list {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: row;
-            gap: 20px;
-        }
-        .nav-list li a {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 300;
-            letter-spacing: 0.5px;
-            transition: color 0.3s ease;
-        }
-
-        .nav-list li a:hover {
-            color: #a8d5ba;
-        }
         /* Sections */
         section {
             min-height: 100vh;
@@ -181,6 +137,8 @@
         }
 
         .hero-subtext {
+            -webkit-user-select:none;
+            user-select: none;
             font-family: 'Monument', sans-serif;
             font-size: clamp(30px, 5vw, 48px);
             font-weight: 700;
@@ -191,10 +149,12 @@
         }
 
         .ai-text {
-            font-family: 'Garet', sans-serif;
+            -webkit-user-select:none;
+            user-select: none;
+            font-family: 'grotesk', sans-serif;
             font-size: clamp(250px, 45vw, 800px);
             font-weight: 900;
-            line-height: 0.8;
+            line-height: 0;
             letter-spacing: -0.03em;
             color: #004aad;
         }
@@ -409,6 +369,8 @@
 
             .contact h2 {
                 font-size: clamp(32px, 5vw, 60px);
+                font-family: Monument;
+                text-align: left;
             }
         }
 
@@ -431,6 +393,66 @@
                 letter-spacing: 0.3px;
             }
 
+            .menu-icon {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                width: 30px;
+                height: 22px;
+                cursor: pointer;
+                z-index: 1001;
+            }
+
+            .menu-icon span {
+                height: 3px;
+                width: 100%;
+                background-color: #fff;
+                border-radius: 3px;
+                transition: all 0.4s ease;
+            }
+
+            
+            /* Animate hamburger to "X" */
+            .menu-icon.open span:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+
+            .menu-icon.open span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-icon.open span:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+            }
+
+            /* Hide nav list by default on mobile */
+            .nav-list {
+                position: absolute;
+                top: 40px;
+                left: 7;
+                background: transparent;
+                border-radius: 8px;
+                opacity: 0;
+                pointer-events: none;
+                transform: translateY(-10px);
+                transition: all 0.35s ease;
+            }
+
+            /* Show nav list when active */
+            .nav-list.active {
+                opacity: 1;
+                pointer-events: all;
+                transform: translateY(0);
+                line-height: 20px;
+
+            }
+
+            /* Keep link styles but remove bottom margin from last item */
+            .nav-list li:last-child {
+                margin-bottom: 0;
+            }
+
+
             .logo {
                 top: 25px;
                 right: 28px;
@@ -446,32 +468,6 @@
                 font-size: 16px;
             }
 
-            .nav-list {
-                position: absolute;
-                top: 50px;
-                left: 0;
-                background: transparent; /* full transparency */
-                flex-direction: column;
-                align-items: left;
-                line-height: 0.6;
-                gap: 15px;
-                padding: 10px 0;
-                opacity: 0;
-                pointer-events: none;
-                transform: translateY(-10px);
-                transition: all 0.35s ease;
-            }
-
-            .nav-list.active {
-                opacity: 1;
-                pointer-events: all;
-                transform: translateY(0);
-            }
-
-
-            nav ul.active {
-                left: 0;
-            }
 
 
             section {
@@ -515,93 +511,40 @@
                 line-height: 0.85 !important;
                 z-index: 1; /* Behind subtext */
             }
-    .projects {
-        padding: 60px 10px;
-        min-height: 80vh; /* Give space for stacked cards */
-    }
-
-    .projects-wrapper {
-        position: relative;
-        height: 500px; /* Fixed height for stack */
-        overflow: visible; /* Let cards overflow */
-    }
-
-    .projects-container {
-        display: block; /* Remove flex */
-        position: relative;
-        height: 100%;
-    }
-
-    .project-card {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 85%;
-        min-width: auto;
-        aspect-ratio: 4/3;
-        border-radius: 20px;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        cursor: grab;
-    }
-
-    /* Stack effect - cards behind get smaller and lower */
-    .project-card:nth-child(1) {
-        z-index: 3;
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
-    }
-
-    .project-card:nth-child(2) {
-        z-index: 2;
-        transform: translate(-50%, -50%) scale(0.95) translateY(20px);
-        opacity: 0.7;
-    }
-
-    .project-card:nth-child(3) {
-        z-index: 1;
-        transform: translate(-50%, -50%) scale(0.9) translateY(40px);
-        opacity: 0.4;
-    }
-
-    /* When swiping */
-    .project-card.swiping {
-        transition: none;
-        cursor: grabbing;
-    }
-
-    /* When swiped away */
-    .project-card.swiped-left {
-        transform: translate(-200%, -50%) rotate(-30deg) !important;
-        opacity: 0 !important;
-    }
-
-    .project-card.swiped-right {
-        transform: translate(100%, -50%) rotate(30deg) !important;
-        opacity: 0 !important;
-    }
-
-    .project-card img.project-img {
-        border-radius: 20px;
-        pointer-events: none; /* Prevent image drag */
-    }
-
+        .projects-container {
+            flex-direction: column;
+            gap: 30px;
+        }
+        .project-card {
+            min-width: 100%;
+            aspect-ratio: 4/3;
+        }
     /* Hide arrows and dots - not needed for swipe */
-    .arrow-left,
-    .arrow-right,
-    .nav-dots {
-        display: none;
-    }
+            .arrow-left,
+            .arrow-right,
+            .nav-dots {
+                display: none;
+            }
             .vision h2 {
                 font-size: clamp(20px, 5vw, 32px);
                 margin-bottom: 30px;
             }
 
-            .contact h2 {
-                font-size: clamp(28px, 6vw, 50px);
+            .contact-text {
+                display: flex; /* Enables flexbox layout */
+                flex-direction: column; /* Stacks the children vertically */
+                gap: 5px; /* Sets the space between the h2 and a */
+                text-align: left;
+                width: 100%;
             }
 
-            .contact a {
+            .contact-text h2 {
+                font-size: clamp(28px, 12vw, 60px);
+                font-family: Monument;
+                margin: 0; /* Remove default margin from the h2 */
+            }
+
+            .contact-text a {
                 font-size: 14px;
             }
         }
@@ -712,7 +655,7 @@
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
-        <div>
+        <div class="contact-text">
             <h2>LETS CONNECT!</h2>
             <a href="mailto:nadeemkariyad1@gmail.com">nadeemkariyad1@gmail.com</a>
         </div>
@@ -740,13 +683,36 @@
         });
     });
     // nav hamburger menu in mobile//
-    const menuIcon = document.getElementById('menuIcon');
-    const navMenu = document.querySelector('nav ul');
+// Hamburger Menu Toggle
+    const menuIcon = document.querySelector('.menu-icon');
+    const navList = document.querySelector('.nav-list');
 
     menuIcon.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
         menuIcon.classList.toggle('open');
-    })
+        navList.classList.toggle('active');
+    });
+
+    // Close menu when clicking on a link
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            menuIcon.classList.remove('open');
+            navList.classList.remove('active');
+        });
+    });
+
+    // Smooth Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
 
     // Smooth Scroll Animation Observer
     const sections = document.querySelectorAll('section');
