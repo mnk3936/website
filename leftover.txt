@@ -1,0 +1,230 @@
+        
+Theseare code for smaller screens .
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {/* stack text and AI vertically */
+                gap: 10px;
+            }
+
+            .hero-subtext {
+                font-size: clamp(24px, 4vw, 36px);
+                text-align: left;
+                line-height: 1;
+            }
+
+            .ai-text {
+                font-size: clamp(120px, 35vw, 300px);
+            }
+
+            .vision h2 {
+                font-size: clamp(22px, 4vw, 40px);
+                margin-bottom: 40px;
+                padding: 0 20px;
+            }
+
+            .projects {
+                padding: 80px 20px;
+            }
+
+            .project-card {
+                min-width: 90%;
+                aspect-ratio: 16/9;
+            }
+
+            .arrow-left {
+                left: 10px;
+            }
+
+            .arrow-right {
+                right: 10px;
+            }
+
+            .arrow-left,
+            .arrow-right {
+                width: 45px;
+                height: 45px;
+                opacity: 0.7;
+            }
+
+            .contact h2 {
+                font-size: clamp(32px, 5vw, 60px);
+                font-family: Monument;
+                text-align: left;
+            }
+        }
+
+        /* Mobile screens (below 768px) */
+        @media (max-width: 768px) {
+            #canvas {
+                display: none; /* hide canvas on mobile */
+            }
+            body {
+                overflow-x: hidden;
+            }
+
+            nav {
+                top: 37px;
+                left: 25px;
+            }
+
+            nav ul li a {
+                font-size: 13px;
+                letter-spacing: 0.3px;
+            }
+
+            .menu-icon {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                width: 30px;
+                height: 22px;
+                cursor: pointer;
+                z-index: 1001;
+            }
+
+            .menu-icon span {
+                height: 3px;
+                width: 100%;
+                background-color: #fff;
+                border-radius: 3px;
+                transition: all 0.4s ease;
+            }
+
+            
+            /* Animate hamburger to "X" */
+            .menu-icon.open span:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+
+            .menu-icon.open span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-icon.open span:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+            }
+
+            /* Hide nav list by default on mobile */
+            .nav-list {
+                position: absolute;
+                top: 40px;
+                left: 7;
+                background: transparent;
+                border-radius: 8px;
+                opacity: 0;
+                pointer-events: none;
+                transform: translateY(-10px);
+                transition: all 0.35s ease;
+            }
+
+            /* Show nav list when active */
+            .nav-list.active {
+                opacity: 1;
+                pointer-events: all;
+                transform: translateY(0);
+                line-height: 20px;
+
+            }
+
+            /* Keep link styles but remove bottom margin from last item */
+            .nav-list li:last-child {
+                margin-bottom: 0;
+            }
+
+
+            .logo {
+                top: 25px;
+                right: 28px;
+            }
+
+            .logo img {
+                width: 80px;  /* decrease for smaller logo */
+                height: auto; /* keeps proportions */
+            }
+
+            .logo-text {
+                font-family: 'bernoru', sans-serif;
+                font-size: 16px;
+            }
+
+
+
+            section {
+                padding: 0 10px;
+            }
+
+            .hero {
+                height: 100vh;
+                width: 100%;
+                position: relative;
+                padding: 0px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .hero-content {
+                height: 100vh;
+                width: 100%;
+                position: relative;
+            }
+
+            .hero-subtext {
+                position: absolute; /* Make it independent */
+                top: 40%; /* Center vertically */
+                left: 4px; /* Left aligned with padding */
+                transform: translateY(-50%); /* Perfect centering */
+                width: auto;
+                text-align: left;
+                font-size: 15vw !important;
+                line-height: 1 !important;
+                z-index: 2; /* On top */
+            }
+            .ai-text {
+                font-family: 'grotesk', sans-serif;
+                position: absolute; /* Make it independent */
+                top: 24%; /* Position from bottom */
+                right: 0px; /* Right aligned with padding */
+                text-align: right;
+                font-size: 75vw !important;
+                line-height: 0.85 !important;
+                z-index: 1; /* Behind subtext */
+            }
+        .projects-container {
+            flex-direction: column;
+            gap: 30px;
+        }
+        .project-card {
+            min-width: 100%;
+            aspect-ratio: 4/3;
+        }
+    /* Hide arrows and dots - not needed for swipe */
+            .arrow-left,
+            .arrow-right,
+            .nav-dots {
+                display: none;
+            }
+            .vision h2 {
+                font-size: clamp(20px, 5vw, 32px);
+                margin-bottom: 30px;
+            }
+
+            .contact-text {
+                display: flex; /* Enables flexbox layout */
+                flex-direction: column; /* Stacks the children vertically */
+                gap: 5px; /* Sets the space between the h2 and a */
+                text-align: left;
+                width: 100%;
+            }
+
+            .contact-text h2 {
+                font-size: clamp(28px, 12vw, 60px);
+                font-family: Monument;
+                margin: 0; /* Remove default margin from the h2 */
+            }
+
+            .contact-text a {
+                font-size: 14px;
+            }
+        }
